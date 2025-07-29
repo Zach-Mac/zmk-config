@@ -1,0 +1,60 @@
+menu "zmk-adaptive-key (/home/zach/Dev/zmk-workspace/modules/zmk/adaptive-key)"
+osource "/home/zach/Dev/zmk-workspace/modules/zmk/adaptive-key/Kconfig"
+config ZEPHYR_ZMK_ADAPTIVE_KEY_MODULE
+	bool
+	default y
+endmenu
+menu "zmk-auto-layer (/home/zach/Dev/zmk-workspace/modules/zmk/auto-layer)"
+osource "/home/zach/Dev/zmk-workspace/modules/zmk/auto-layer/Kconfig"
+config ZEPHYR_ZMK_AUTO_LAYER_MODULE
+	bool
+	default y
+endmenu
+menu "zmk-leader-key (/home/zach/Dev/zmk-workspace/modules/zmk/leader-key)"
+osource "/home/zach/Dev/zmk-workspace/modules/zmk/leader-key/Kconfig"
+config ZEPHYR_ZMK_LEADER_KEY_MODULE
+	bool
+	default y
+endmenu
+menu "tri-state (/home/zach/Dev/zmk-workspace/modules/zmk/tri-state)"
+osource "/home/zach/Dev/zmk-workspace/modules/zmk/tri-state/Kconfig"
+config ZEPHYR_TRI_STATE_MODULE
+	bool
+	default y
+endmenu
+menu "nanopb (/home/zach/Dev/zmk-workspace/modules/lib/nanopb)"
+osource "$(ZEPHYR_NANOPB_KCONFIG)"
+config ZEPHYR_NANOPB_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis (/home/zach/Dev/zmk-workspace/modules/hal/cmsis)"
+osource "$(ZEPHYR_CMSIS_KCONFIG)"
+config ZEPHYR_CMSIS_MODULE
+	bool
+	default y
+endmenu
+menu "hal_nordic (/home/zach/Dev/zmk-workspace/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+endmenu
+menu "hal_rpi_pico (/home/zach/Dev/zmk-workspace/modules/hal/rpi_pico)"
+osource "$(ZEPHYR_HAL_RPI_PICO_KCONFIG)"
+config ZEPHYR_HAL_RPI_PICO_MODULE
+	bool
+	default y
+endmenu
+menu "lvgl (/home/zach/Dev/zmk-workspace/modules/lib/gui/lvgl)"
+osource "/home/zach/Dev/zmk-workspace/modules/lib/gui/lvgl/Kconfig"
+config ZEPHYR_LVGL_MODULE
+	bool
+	default y
+endmenu
+menu "module (/home/zach/Dev/zmk-workspace/zmk/app/module)"
+osource "/home/zach/Dev/zmk-workspace/zmk/app/module/Kconfig"
+config ZEPHYR_MODULE_MODULE
+	bool
+	default y
+endmenu

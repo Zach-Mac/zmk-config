@@ -3,7 +3,7 @@ parse_config:
     - "modules/zmk/helpers/include"
 
   zmk_preamble: |
-    #include <zmk-helpers/key-labels/34.h>
+    #include <zmk-helpers/key-labels/42.h>
     #define CONFIG_WIRELESS
 
   raw_binding_map:
@@ -28,15 +28,18 @@ parse_config:
     "&swapper": Next Win
     "&kp LS(TAB)": Prev Win
     "&dot_spc": Sentence
-    "&num_dance": { "t": "Numword", "s": "Sticky Num" }
+    # "&num_dance": { "t": "Numword", "s": "Sticky Num" }
+    "&num_dance": { "t": "Numword", "s": "togon NUM" }
     "&magic_shift": { "t": Magic, "h": "Shift" }
     "&smart_mouse": Smart Mouse
 
     "&hml LS(LALT)TAB": Tab
     "&hm_combo_ldr": Leader
     "&hm_combo_ldrsh": Shift+Leader
-    "&hm_combo_lpar": { "t": "(", "right": "<" }
-    "&hm_combo_rpar": { "t": ")", "right": ">" }
+    # "&hm_combo_lpar": { "t": "(", "right": "<" }
+    # "&hm_combo_rpar": { "t": ")", "right": ">" }
+    "&hm_combo_lpar": { "t": "(", "right": "$" }
+    "&hm_combo_rpar": { "t": ")", "right": "^" }
     "&kp LBKT": { "t": "[", "right": "{" }
     "&kp RBKT": { "t": "]", "right": "}" }
 
@@ -56,16 +59,41 @@ parse_config:
     "&mkp MB4": Back Click
     "&mkp MB5": Forward Click
 
+    "&tog_on_MOUSE": togon MOUSE
+    "&tog_off_MOUSE": togoff MOUSE
+    "&tog_on_QWERTY": togon QWERTY
+    "&tog_off_QWERTY": togoff QWERTY
+    "&tog_on_NUM": togon NUM
+    "&tog_off_NUM": togoff NUM
+    "&tog_on_NAV": togon NAV
+    "&tog_off_NAV": togoff NAV
+
+    "&tog_MOUSE": tog MOUSE
+    "&tog_QWERTY": tog QWERTY
+    "&tog_NUM": tog NUM
+    "&tog_NAV": tog NAV
+    "&tog_FN": tog FN
+    "&tog_SNAKE": tog SNAKE
+
   trans_legend: { "t": "", "type": "trans" }
 
   zmk_combos:
     combo_cut: { align: bottom, o: 0.15 }
     combo_ldrsh: { align: top, o: 1.35 }
+    combo_rret: { align: top, o: 1.35 }
 
     combo_lt: { hidden: true }
     combo_gt: { hidden: true }
     combo_lbrc: { hidden: true }
     combo_rbrc: { hidden: true }
+
+    combo_srdllr: { hidden: true }
+    combo_srcaret: { hidden: true }
+
+    combo_lwcsa: { hidden: true }
+    combo_rwcsa: { hidden: true }
+    combo_lcsa: { hidden: true }
+    combo_rcsa: { hidden: true }
 
   zmk_keycode_map:
     # custom mappings
@@ -96,12 +124,19 @@ parse_config:
     LEFT: ←
     RIGHT: →
 
-    C_MUTE: $$mdi:volume-off$$
-    C_PP: $$mdi:play-pause$$
-    C_VOL_UP: $$mdi:volume-high$$
-    C_VOL_DN: $$mdi:volume-medium$$
-    C_NEXT: $$mdi:skip-forward$$
-    C_PREV: $$mdi:skip-backward$$
+    # C_MUTE: $$mdi:volume-off$$
+    # C_PP: $$mdi:play-pause$$
+    # C_VOL_UP: $$mdi:volume-high$$
+    # C_VOL_DN: $$mdi:volume-medium$$
+    # C_NEXT: $$mdi:skip-forward$$
+    # C_PREV: $$mdi:skip-backward$$
+
+    C_MUTE: 󰝟
+    C_PP: 󰐎
+    C_VOL_UP: 󰕾
+    C_VOL_DN: 󰖀
+    C_NEXT: 󰒬
+    C_PREV: 󰒫
 
     # defaults
     AMPERSAND: "&"
@@ -109,6 +144,7 @@ parse_config:
     APOS: "'"
     APOSTROPHE: "'"
     ASTERISK: "*"
+    KP_ASTERISK: "*"
     ASTRK: "*"
     AT: "@"
     AT_SIGN: "@"
@@ -139,6 +175,7 @@ parse_config:
     LPAR: (
     LT: <
     MINUS: "-"
+    KP_MINUS: "-"
     NON_US_BACKSLASH: \
     NON_US_BSLH: "|"
     NON_US_HASH: "#"
@@ -148,6 +185,7 @@ parse_config:
     PIPE: "|"
     PIPE2: "|"
     PLUS: +
+    KP_PLUS: +
     POUND: "#"
     PRCNT: "%"
     QMARK: "?"
@@ -162,6 +200,7 @@ parse_config:
     SEMICOLON: ;
     SINGLE_QUOTE: "'"
     SLASH: /
+    KP_SLASH: /
     SQT: "'"
     STAR: "*"
     TILDE: "~"
@@ -171,5 +210,7 @@ parse_config:
 
 draw_config:
   append_colon_to_layer_header: false
-  dark_mode: auto
-  footer_text: "urob/zmk-config"
+  dark_mode: true
+  n_columns: 2
+  svg_extra_style: "background-color: #fff;"
+  # footer_text: "urob/zmk-config"

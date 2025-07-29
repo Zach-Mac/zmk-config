@@ -1,0 +1,16 @@
+# WARNING. THIS FILE IS AUTO-GENERATED. DO NOT MODIFY!
+#
+# This file contains build system settings derived from your modules.
+#
+# Modules may be set via ZEPHYR_MODULES, ZEPHYR_EXTRA_MODULES,
+# and/or the west manifest file.
+#
+# See the Modules guide for more information.
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/modules/zmk/adaptive-key"
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/modules/zmk/auto-layer"
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/modules/zmk/helpers"
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/modules/zmk/leader-key"
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/modules/zmk/tri-state"
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/modules/hal/stm32"
+"DTS_ROOT":"/home/zach/Dev/zmk-workspace/zmk/app/module"
+"MODULE_EXT_ROOT":"/home/zach/Dev/zmk-workspace/zmk/app/keymap-module"

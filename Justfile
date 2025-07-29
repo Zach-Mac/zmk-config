@@ -84,9 +84,18 @@ clean-nix:
 draw:
     #!/usr/bin/env bash
     set -euo pipefail
-    keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" --virtual-layers Combos >"{{ draw }}/base.yaml"
-    yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
-    keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "ferris/sweep" >"{{ draw }}/base.svg"
+    keymap -d -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" >"{{ draw }}/base.yaml"
+    # keymap -d -c "draw/config.yaml" parse -z "config/base.keymap" > "draw/base.yaml"
+    # yq -Yi '.layers |= map(select(.l != "Qwerty"))' "{{ draw }}/base.yaml"
+    yq -Yi '.combos.[].l = ["Base"]' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.Qwerty)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.Oneshot)' "{{ draw }}/base.yaml"
+    # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
+    keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "corne_rotated" >"{{ draw }}/base.svg"
+
+    # keymap -d -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap.original" --virtual-layers Combos >"{{ draw }}/base.yaml"
+    # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
+    # keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "ferris/sweep" >"{{ draw }}/base.svg"
 
 # initialize west
 init:
