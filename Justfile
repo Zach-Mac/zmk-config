@@ -91,6 +91,10 @@ draw:
     yq -Yi 'del(.layers.Qwerty)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Oneshot)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Snake)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.Mirror)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.ShftMirror)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.NoIdle)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.Sentence)' "{{ draw }}/base.yaml"
     # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
     keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "corne_rotated" >"{{ draw }}/base.svg"
 
