@@ -154,7 +154,7 @@ ZMK_MACRO(my_num_word, bindings = <&temp_tog_signal_NUM &num_word NUM>; \
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
-               tapping-term-ms = <250>; quick-tap-ms = <QUICK_TAP_MS>;         \
+               tapping-term-ms = <260>; quick-tap-ms = <QUICK_TAP_MS>;         \
 hold-trigger-on-release;         \
                hold-trigger-key-positions = <TRIGGER_POS>;)
                // require-prior-idle-ms = <100>; 
