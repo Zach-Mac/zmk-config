@@ -98,6 +98,9 @@
 #define NOT_NAV \
   DEF FN NUM MOUSE SYS QWERTY ONESHOT SNAKE SHFTMIRROR MIRROR NOIDLE SENTENCE
 
+#define NOT_NAV_FN \
+  DEF NUM MOUSE SYS QWERTY ONESHOT SNAKE SHFTMIRROR MIRROR NOIDLE SENTENCE
+
 #define LAYER_LIST \
   LL(DEF,        0,  F20)  \
   LL(QWERTY,     1,  F21)  \
@@ -152,24 +155,43 @@ ZMK_MACRO(my_num_word, bindings = <&temp_tog_signal_NUM &num_word NUM>; \
 //   #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2 // Thumbs on 36+ keys.
 // #endif
 
+
+// NOTE: hold-while-undecided makes mods work well with mouse but causes immediate mod tap on home row keys
+// this makes tapping alt all the time causing menu bars to appear
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
                tapping-term-ms = <260>; quick-tap-ms = <QUICK_TAP_MS>;         \
-hold-trigger-on-release;         \
-               hold-trigger-key-positions = <TRIGGER_POS>;)
+               hold-trigger-on-release;                                        \
+               hold-trigger-key-positions = <TRIGGER_POS>;                     \
+               )
                // require-prior-idle-ms = <100>; 
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
+
+// NOTE: needed for using s+/ to do ? afer clicking the s button.
+// With quick-tap-ms, as macro above, it does ss/ (eg thiss/ instead of this?)
+// HOWEVER, this causes double tap hm key to spam the key no work
+#define MAKE_HRM_NO_QUICK(NAME, HOLD, TAP, TRIGGER_POS)                            \
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
+               tapping-term-ms = <260>; hold-trigger-on-release;               \
+               hold-trigger-key-positions = <TRIGGER_POS>;                     \
+               hold-while-undecided;                                            \
+               )
+
+MAKE_HRM_NO_QUICK(hml2, &kp, &kp, KEYS_R THUMBS)
+MAKE_HRM_NO_QUICK(hmr2, &kp, &kp, KEYS_L THUMBS)
+
 // No idle hrm for the ability to use mods immediately after pressing certain keys.
 // TODO: Won't need this once there is an exception list for require-prior-idle-ms: https://github.com/zmkfirmware/zmk/issues/2400
 // For some reason causes thumb keys to not work when held immediately after spc or bspc
-#define MAKE_HRM_NO_IDLE(NAME, HOLD, TAP, TRIGGER_POS)                                 \
+#define MAKE_HRM_NO_IDLE(NAME, HOLD, TAP, TRIGGER_POS)                         \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
                tapping-term-ms = <230>; quick-tap-ms = <QUICK_TAP_MS>;         \
-               hold-trigger-on-release;         \
-               hold-trigger-key-positions = <TRIGGER_POS>;)
+               hold-trigger-on-release;                                        \
+               hold-trigger-key-positions = <TRIGGER_POS>;                     \
+               )
 
 MAKE_HRM_NO_IDLE(hml_no_idle, &kp, &kp, KEYS_R THUMBS) 
 MAKE_HRM_NO_IDLE(hmr_no_idle, &kp, &kp, KEYS_L THUMBS) 
@@ -422,6 +444,10 @@ ZMK_TRI_STATE(
         //     LM4 LM3 LM2 LM1 LM0     RM0 RM1 RM2 RM3 RM4 
         //         LB3 LB2 LB1             RB1 RB2 RB3 
         //             LH2             RH0     RH2>;
+        <       LT3 LT2 LT1             RT1 RT2 RT3 
+            LM4 LM3 LM2 LM1 LM0     RM0 RM1 RM2 RM3 RM4 
+                LB3 LB2 LB1             RB1 RB2 RB3 
+                    LH2             RH0     RH2>;
     ignored-layers = <MOUSE NAV FN>;)
 
 
@@ -517,7 +543,7 @@ ZMK_BASE_LAYER(Base,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
     &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T       ,   &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSPC    ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    &kp ESC       &hml LALT A   &hml LSHFT S  &hml LCTRL D  &hml LGUI F  &kp G        ,   &kp H         &hmr RGUI J   &hmr RCTRL K &hmr RSHFT L  &hmr RALT SEMI &kp SQT     , 
+    &kp ESC       &hml LALT A   &hml2 LSHFT S &hml LCTRL D  &hml LGUI F  &kp G        ,   &kp H         &hmr RGUI J   &hmr RCTRL K &hmr RSHFT L  &hmr RALT SEMI &kp SQT     , 
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
     &kp DEL       &kp Z         &kp X         &kp C         &kp V         &kp B       ,   &kp COMMA     &kp N         &kp M         &kp DOT       &kp FSLH      &kp RET     , 
 //╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────┼─────────────╯ 
@@ -545,7 +571,7 @@ ZMK_BASE_LAYER(Num,
 //╭─────────────┬────────────────────┬────────────────────────┬────────────────────┬──────────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬────────────┬─────────────┬─────────────╮ 
     &sl ONESHOT   &kp N1               &kp N2                   &kp N3               &kp N4             &kp N5      ,   &kp N6        &kp N7        &kp N8        &kp N9       &kp N0        ___         ,
 //├─────────────┼────────────────────┼────────────────────────┼────────────────────┼──────────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼────────────┼─────────────┼─────────────┤ 
-    ___           &hml LALT KP_SLASH   &hml LSHFT KP_ASTERISK   &hml LCTRL KP_MINUS  &hml LGUI KP_PLUS  ___         ,   &kp COLON    &hmr RGUI N4  &hmr RCTRL N5 &hmr RSHFT N6 &hmr RALT N0  ___         ,
+    ___           &hml LALT KP_SLASH   &hml2 LSHFT KP_ASTERISK  &hml LCTRL KP_MINUS  &hml LGUI KP_PLUS  ___         ,   &kp COLON    &hmr RGUI N4  &hmr RCTRL N5 &hmr RSHFT N6 &hmr RALT N0  ___         ,
 //├─────────────┼────────────────────┼────────────────────────┼────────────────────┼──────────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼────────────┼─────────────┼─────────────┤ 
   &tog_SHFTMIRROR ___                  &kp PERIOD               &kp COMMA            &kp PERIOD         ___         ,   ___           &kp N1        &kp N2        &kp N3       ___           ___         ,
 //╰─────────────┼────────────────────┼────────────────────────┴────────────────────┼──────────────────┼─────────────┤ ├─────────────┼─────────────┴──────────────────────────┼─────────────┼─────────────╯ 
@@ -558,7 +584,7 @@ ZMK_BASE_LAYER(Nav,
 //╭─────────────┬────────────────┬─────────────────┬─────────────────┬────────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
     ___           &kp LA(F4)       &kp LC(RIGHT)     &kp UP            &swapper         ___         ,   &kp LC(C)     ___           &kp HOME      ___           &kp LC(V)     NAV_DEL     , 
 //├─────────────┼────────────────┼─────────────────┼─────────────────┼────────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    ___           &hml LALT END    &hml LSHFT LEFT   &hml LCTRL DOWN   &hml LGUI RIGHT  ___         ,   NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___         , 
+    ___           &hml LALT END    &hml2 LSHFT LEFT  &hml LCTRL DOWN   &hml LGUI RIGHT  ___         ,   NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET       ___         , 
 //├─────────────┼────────────────┼─────────────────┼─────────────────┼────────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
     &kp DEL       ___              ___               ___               ___              &kp LC(LEFT),   &kp INS       &kp PG_DN     &kp PG_UP     ___           ___           &tog_FN     , 
 //╰─────────────┼────────────────┼─────────────────┴─────────────────┼────────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────┼─────────────╯ 
@@ -570,7 +596,7 @@ ZMK_BASE_LAYER(Fn,
 //╭─────────────┬────────────────┬─────────────────┬─────────────────┬────────────────┬──────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
     &kp F1        &kp F2           &kp F3            &kp F4            &kp F5           &kp F6       ,   &kp F7      &hmr RGUI F8  &hmr RCTRL F9 &hmr RSHFT F10 &hmr RALT F11  &kp F12     , 
 //├─────────────┼────────────────┼─────────────────┼─────────────────┼────────────────┼──────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    &tog_QWERTY  &hml LALT C_MUTE  &hml LSHFT LEFT   &hml LCTRL UP     &hml LGUI DOWN   &kp RIGHT    ,   &kp K_APP   &kp KP_ASTERISK &kp KP_MINUS  &kp KP_PLUS   VOL_DOWN      ___         , 
+    &tog_QWERTY  &hml LALT C_MUTE  &hml2 LSHFT LEFT  &hml LCTRL UP     &hml LGUI DOWN   &kp RIGHT    ,   &kp K_APP     &mkp LCLK     &mkp RCLK     &kp KP_PLUS   VOL_DOWN      ___         , 
 //├─────────────┼────────────────┼─────────────────┼─────────────────┼────────────────┼──────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
     &tog_NAV      &kp C_PREV       &kp C_PP          &kp C_NEXT        &kp C_VOL_DN     &kp C_VOL_UP ,   &tog_SNAKE   &kp C_BRI_DEC &kp C_BRI_INC  ___           ___           ___         ,
 //╰─────────────┼────────────────┼─────────────────┴─────────────────┼────────────────┼──────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────┼─────────────╯ 
@@ -651,11 +677,11 @@ ZMK_BASE_LAYER(ShftMirror,
 
 ZMK_BASE_LAYER(Mirror,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
-    &kp BSPC     &kp P         &kp O         &kp I         &kp U         &kp Y       ,   &kp T         &kp R         &kp E         &kp W         &kp Q         &kp TAB     , 
+    &kp BSPC      &kp P         &kp O         &kp I         &kp U         &kp Y       ,   &kp T         &kp R         &kp E         &kp W         &kp Q         &kp TAB     , 
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    &kp SQT      &hmr RALT SEMI &hmr RSHFT L  &hmr RCTRL K  &hmr RGUI J   &kp H       ,   &kp G         &hml LGUI F   &hml LCTRL D  &hml LSHFT S  &hml LALT A   &kp ESC     , 
+    &kp SQT      &hmr RALT SEMI &hmr RSHFT L &hmr RCTRL K  &hmr RGUI J   &kp H       ,   &kp G         &hml LGUI F   &hml LCTRL D  &hml LSHFT S &hml LALT A   &kp ESC     , 
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    &kp RET      &kp FSLH      &kp DOT       &kp M         &kp N         &kp COMMA   ,   &kp B         &kp V         &kp C         &kp X         &kp Z         &kp DEL     , 
+    &kp RET       &kp FSLH      &kp DOT       &kp M         &kp N         &kp COMMA   ,   &kp B         &kp V         &kp C         &kp X         &kp Z         &kp DEL     , 
 //╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────┼─────────────╯ 
                                               SMART_NUM    &lt NAV SPACE   MAGIC_SHIFT ,   MAGIC_SHIFT  &lt FN SPACE  SMART_NUM           
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
@@ -720,7 +746,7 @@ ZMK_BASE_LAYER(Sentence,
 //     ___           &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PERCENT    ,   &kp CARET      &kp AMPS      &kp ASTRK     &kp LPAR      &kp RPAR      ___         ,
 //         // ___            ___           ___           ___           ___           ___      ,     ___           ___           ___           ___           ___           ___          ,
 // //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-//     ___           &hml LALT N1 &hml LSHFT N2 &hml LCTRL N3  &hml LGUI N4  &kp N5      ,   &kp N6        &hmr RGUI N7 &hmr RCTRL N8 &hmr RSHFT N9  &hmr RALT N0  ___         ,
+//     ___           &hml LALT N1 &hml2 LSHFT N2 &hml LCTRL N3  &hml LGUI N4  &kp N5      ,   &kp N6        &hmr RGUI N7 &hmr RCTRL N8 &hml2 RSHFT N9  &hmr RALT N0  ___         ,
 // //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
 //     ___           ___           &kp N1        &kp N2        &kp N3        ___         ,   ___           ___           ___           ___           ___           ___         , 
 // //╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────┼─────────────╯ 

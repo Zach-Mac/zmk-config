@@ -8,6 +8,8 @@
               ╰─────────────╯ ╰─────────────╯ 
 */
 
+#include "mouse.dtsi"
+
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
 
@@ -58,10 +60,11 @@ ZMK_COMBO(rret,  &hmr RS(RC(RGUI)) RET, RM3 RM2 RM1, ALL_LAYERS, COMBO_TERM_FAST
 /* ZMK_COMBO(srcaret, &kp CARET,         RM1 RM2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST) */
 /* ZMK_COMBO(srdllr,  &kp DLLR,          RM2 RM3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST) */
 /* ZMK_COMBO(rdel,    &hmr RS(RALT) DEL, RM3 RM4,     ALL_LAYERS , COMBO_TERM_FAST, COMBO_IDLE_FAST) */
-ZMK_COMBO(lbkt,  &hmr RC(RGUI)  LBKT,     RM1 RM2,     NOT_NAV,     COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbkt,  &hmr RS(RCTRL) RBKT,     RM2 RM3,     NOT_NAV,     COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(lbkt,  &hmr RC(RGUI)  LBKT,     RM1 RM2,     NOT_NAV_FN,     COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(rbkt,  &hmr RS(RCTRL) RBKT,     RM2 RM3,     NOT_NAV_FN,     COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(lbrc,  &hmr RC(RGUI)  LBRC,     RM1 RM2,     NAV,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(rbrc,  &hmr RS(RCTRL) RBRC,     RM2 RM3,     NAV,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(lbrc,  &mkp MCLK,               RM1 RM2,     FN,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
 /* ZMK_COMBO(lt,    &kp LT,       RM1 RM2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST) */
 /* ZMK_COMBO(gt,    &kp GT,       RM2 RM3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST) */
 
