@@ -79,13 +79,13 @@
 
 #define DEF 0
 #define QWERTY 1
-#define NUM 2
-#define FN 3
-#define NAV 4
-#define SYS 5
-#define MOUSE 6
-#define MOUSE_BTNS 7
-#define SHFTMIRROR 8
+#define SHFTMIRROR 2
+#define NUM 3
+#define FN 4
+#define NAV 5
+#define SYS 6
+#define MOUSE 7
+#define MOUSE_BTNS 8
 #define MIRROR 9
 #define ONESHOT 10
 #define SNAKE 11
@@ -94,24 +94,24 @@
 
 
 #define ALL_LAYERS \
-  DEF QWERTY NUM FN NAV SYS MOUSE MOUSE_BTNS SHFTMIRROR MIRROR ONESHOT SNAKE NOIDLE SENTENCE
+  DEF QWERTY SHFTMIRROR NUM FN NAV SYS MOUSE MOUSE_BTNS MIRROR ONESHOT SNAKE NOIDLE SENTENCE
 
 #define NOT_NAV \
-  DEF QWERTY NUM FN SYS MOUSE MOUSE_BTNS SHFTMIRROR MIRROR ONESHOT SNAKE NOIDLE SENTENCE
+  DEF QWERTY SHFTMIRROR NUM FN SYS MOUSE MOUSE_BTNS MIRROR ONESHOT SNAKE NOIDLE SENTENCE
 
 #define NOT_NAV_FN_MOUSE \
-  DEF QWERTY NUM SYS SHFTMIRROR MIRROR ONESHOT SNAKE NOIDLE SENTENCE
+  DEF QWERTY SHFTMIRROR NUM SYS MIRROR ONESHOT SNAKE NOIDLE SENTENCE
 
 #define LAYER_LIST \
   LL(DEF,        0,  F20)  \
   LL(QWERTY,     1,  F21)  \
-  LL(NUM,        2,  F22)  \
-  LL(FN,         3,  F23)  \
-  LL(NAV,        4,  F24)  \
-  LL(SYS,        5,  F15)  \
-  LL(MOUSE,      6,  F16)  \
-  LL(MOUSE_BTNS, 7,  F17)  \
-  LL(SHFTMIRROR, 8,  F18)  \
+  LL(SHFTMIRROR, 2,  F22)  \
+  LL(NUM,        3,  F23)  \
+  LL(FN,         4,  F24)  \
+  LL(NAV,        5,  F15)  \
+  LL(SYS,        6,  F16)  \
+  LL(MOUSE,      7,  F17)  \
+  LL(MOUSE_BTNS, 8,  F18)  \
   LL(ONESHOT,    10, F19)
 
 // fkey: temp toggle (eg. numword, capsword, etc.)
@@ -568,6 +568,23 @@ ZMK_BASE_LAYER(Qwerty,
 )
 
 
+ZMK_BASE_LAYER(ShftMirror,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
+    ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
+    ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
+    ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
+    // ___           ___           ___           ___           ___  &my_mirror_shift_sticky ,  &mirror_hold_shift           ___           ___           ___           ___           ___         ,
+    // ___ &mirror_hold_alt  &mirror_hold_shift  &mirror_hold_ctrl &mirror_hold_gui  ___ ,   ___           ___           ___           ___           ___           ___         ,
+//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────╯ 
+                                              ___           ___         &m_morph_shift,   ___           ___         &m_morph_shift
+//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+)
+
+
+
+
 
 // TODO: shftmirror should only happen if num layer is being held, not if it's just tapped 
 ZMK_BASE_LAYER(Num,
@@ -647,21 +664,6 @@ ZMK_BASE_LAYER(Mouse_Btns,
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
 )
 
-
-
-ZMK_BASE_LAYER(ShftMirror,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
-    ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
-//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
-    ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
-    // ___           ___           ___           ___           ___  &my_mirror_shift_sticky ,  &mirror_hold_shift           ___           ___           ___           ___           ___         ,
-    // ___ &mirror_hold_alt  &mirror_hold_shift  &mirror_hold_ctrl &mirror_hold_gui  ___ ,   ___           ___           ___           ___           ___           ___         ,
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────╯ 
-                                              ___           ___         &m_morph_shift,   ___           ___         &m_morph_shift
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
 
 
 ZMK_BASE_LAYER(Mirror,
