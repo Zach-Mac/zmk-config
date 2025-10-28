@@ -68,6 +68,8 @@ build expr *west_args: _parse_combos
         just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
     done
 
+    just draw
+
 # clear build cache and artifacts
 clean:
     rm -rf {{ build }} {{ out }}
@@ -85,7 +87,7 @@ draw:
     #!/usr/bin/env bash
     set -euo pipefail
     keymap -d -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" >"{{ draw }}/base.yaml"
-    cp "{{ draw }}/base.yaml" "{{ draw }}/base.yaml.bak"
+    # cp "{{ draw }}/base.yaml" "{{ draw }}/base.yaml.bak"
     # keymap -d -c "draw/config.yaml" parse -z "config/base.keymap" > "draw/base.yaml"
     # yq -Yi '.layers |= map(select(.l != "Qwerty"))' "{{ draw }}/base.yaml"
 

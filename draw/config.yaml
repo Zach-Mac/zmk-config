@@ -33,6 +33,14 @@ parse_config:
     "&magic_shift": { "t": Magic, "h": "Shift" }
     "&smart_mouse": Smart Mouse
 
+    "&double_dash": --
+# ZMK_COMBO_MIRRORED(lc_ls_z,  &kp LC(LS(Z)),         LB4 LB3 LB2,     RB4 RB3 RB2,       T_FAST, I_FAST)
+# ZMK_COMBO_MIRRORED(lc_ls_c,  &kp LC(LS(C)),         LB3 LB2 LB1,     RB3 RB2 RB1,       T_FAST, I_FAST)
+# ZMK_COMBO_MIRRORED(lc_ls_v,  &kp LC(LS(V)),         LB2 LB1 LB0,     RB2 RB1 RB0,       T_FAST, I_FAST)
+    "&kp LC(LS(Z))": C-S Z
+    "&kp LC(LS(C))": C-S C
+    "&kp LC(LS(V))": C-S V
+
     "&hml LS(LALT)TAB": Tab
     "&hm_combo_ldr": Leader
     "&hm_combo_ldrsh": Shift+Leader
@@ -78,27 +86,39 @@ parse_config:
   trans_legend: { "t": "", "type": "trans" }
 
   zmk_combos:
-    combo_cut: { align: bottom, o: 0.15 }
     combo_ldrsh: { align: top, o: 1.35 }
-    combo_rret: { align: top, o: 1.35 }
+    combo_rret: { align: bottom, o: 2.35 }
+    combo_dub_dash: { align: top, o: 0.35 }
+    combo_cut: { align: bottom, o: 2.30 }
+    combo_lc_ls_z: { align: bottom, o: 1.65 }
+    combo_lc_ls_c: { align: bottom, o: 1.25 }
+    combo_lc_ls_v: { align: bottom, o: 1.75 }
 
-    
-    combo_cut_m: { align: bottom, o: 0.15 }
     combo_ldrsh_m: { align: top, o: 1.35 }
-    combo_rret_m: { align: top, o: 1.35 }
-
-    combo_lt: { hidden: true }
-    combo_gt: { hidden: true }
-    combo_lbrc: { hidden: true }
-    combo_rbrc: { hidden: true }
-
-    combo_srdllr: { hidden: true }
-    combo_srcaret: { hidden: true }
+    combo_rret_m: { align: bottom, o: 2.35 }
+    combo_dub_dash_m: { align: top, o: 0.35 }
+    combo_cut_m: { align: bottom, o: 2.30 }
+    combo_lc_ls_z_m: { align: bottom, o: 1.65 }
+    combo_lc_ls_c_m: { align: bottom, o: 1.25 }
+    combo_lc_ls_v_m: { align: bottom, o: 1.75 }
 
     combo_lwcsa: { hidden: true }
     combo_rwcsa: { hidden: true }
     combo_lcsa: { hidden: true }
     combo_rcsa: { hidden: true }
+
+    combo_lwcsa_m: { hidden: true }
+    combo_rwcsa_m: { hidden: true }
+    combo_lcsa_m: { hidden: true }
+    combo_rcsa_m: { hidden: true }
+
+    # combo_lt: { hidden: true }
+    # combo_gt: { hidden: true }
+    # combo_lbrc: { hidden: true }
+    # combo_rbrc: { hidden: true }
+    # combo_srdllr: { hidden: true }
+    # combo_srcaret: { hidden: true }
+
 
   zmk_keycode_map:
     # custom mappings
