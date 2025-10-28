@@ -32,7 +32,7 @@ ZMK_COMBO_MIRRORED(redo,     &kp LC(Y),             LT1 LT0,         RT1 RT0,   
 ZMK_COMBO_MIRRORED(lwcsa,    &kp LC(LS(LA(LGUI))),  LM4 LM3 LM2 LM1, RM4 RM3 RM2 RM1,   T_FAST, I_FAST)
 ZMK_COMBO_MIRRORED(lcsa,     &kp LC(LS(LALT)),      LM4 LM3 LM2,     RM4 RM3 RM2,       T_FAST, I_FAST)
 
-ZMK_COMBO(ldrsh,             &leader_sft,           LM3 LM2 LM1,     NOT_MIRROR,     T_FAST, I_FAST, LS(LC(LGUI)), KEYS_R)
+ZMK_COMBO(ldrsh,             &leader_sft,           LM3 LM2 LM1,     NOT_MIRROR,        T_FAST, I_FAST, LS(LC(LGUI)), KEYS_R)
 
 ZMK_COMBO_MIRRORED(tab,      &hml LS(LCTRL) TAB,    LM3 LM2,         RM3 RM2,           T_FAST, I_FAST)
 ZMK_COMBO_MIRRORED(ret,      &hml LC(LGUI) RET,     LM2 LM1,         RM2 RM1,           T_FAST, I_FAST)
@@ -47,6 +47,7 @@ ZMK_COMBO_MIRRORED(lc_ls_c,  &kp LC(LS(C)),         LB3 LB2 LB1,     RB3 RB2 RB1
 ZMK_COMBO_MIRRORED(lc_ls_v,  &kp LC(LS(V)),         LB2 LB1 LB0,     RB2 RB1 RB0,       T_FAST, I_FAST)
 
 /* Horizontal combos - right hand */
+ZMK_COMBO_MIRRORED(dub_dash, &double_dash,          RT1 RT2 RT3,     LT1 LT2 LT3,       T_FAST, I_SLOW)
 ZMK_COMBO_MIRRORED(topminus, &kp MINUS,             RT1 RT2,         LT1 LT2,           T_FAST, I_SLOW)
 ZMK_COMBO_MIRRORED(plus,     &kp PLUS,              RT2 RT3,         LT2 LT3,           T_FAST, I_SLOW)
 ZMK_COMBO_MIRRORED(rwcsa,    &kp RC(RS(RA(RGUI))),  RM4 RM3 RM2 RM1, LM4 LM3 LM2 LM1,   T_FAST, I_FAST)
