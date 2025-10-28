@@ -82,6 +82,11 @@ parse_config:
     combo_ldrsh: { align: top, o: 1.35 }
     combo_rret: { align: top, o: 1.35 }
 
+    
+    combo_cut_m: { align: bottom, o: 0.15 }
+    combo_ldrsh_m: { align: top, o: 1.35 }
+    combo_rret_m: { align: top, o: 1.35 }
+
     combo_lt: { hidden: true }
     combo_gt: { hidden: true }
     combo_lbrc: { hidden: true }
@@ -211,6 +216,6 @@ parse_config:
 draw_config:
   append_colon_to_layer_header: false
   dark_mode: true
-  n_columns: 2
+  n_columns: 3
   svg_extra_style: "background-color: #fff;"
   # footer_text: "urob/zmk-config"

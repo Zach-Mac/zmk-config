@@ -85,16 +85,27 @@ draw:
     #!/usr/bin/env bash
     set -euo pipefail
     keymap -d -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" >"{{ draw }}/base.yaml"
+    cp "{{ draw }}/base.yaml" "{{ draw }}/base.yaml.bak"
     # keymap -d -c "draw/config.yaml" parse -z "config/base.keymap" > "draw/base.yaml"
     # yq -Yi '.layers |= map(select(.l != "Qwerty"))' "{{ draw }}/base.yaml"
-    yq -Yi '.combos.[].l = ["Base"]' "{{ draw }}/base.yaml"
+
+    # Map all combos to ONLY Base layer
+    # yq -Yi '.combos.[].l = ["Base"]' "{{ draw }}/base.yaml"
+
+
+    # If any combos are mapped to Base layer, map them to ONLY Base layer
+    # this allows Mirror combos to be separate
+    yq -Yi '.combos[].l |= (if contains(["Base"]) then ["Base"] else . end)' "{{ draw }}/base.yaml"
+
+    # NOTE: if a combo exists in a layer that is deleted below, it will throw an error
     yq -Yi 'del(.layers.Qwerty)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Oneshot)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Snake)' "{{ draw }}/base.yaml"
-    yq -Yi 'del(.layers.Mirror)' "{{ draw }}/base.yaml"
+    # yq -Yi 'del(.layers.Mirror)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.ShftMirror)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.NoIdle)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Sentence)' "{{ draw }}/base.yaml"
+
     # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
     keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "corne_rotated" >"{{ draw }}/base.svg"
 

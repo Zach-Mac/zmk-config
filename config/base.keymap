@@ -30,9 +30,10 @@
   quick-release;
 };
 
-&sl { // Allow sticky mods to chord across sticky layers.
-  ignore-modifiers;
-};
+// NOTE: this forces you pause after one using oneshot on a hrm if you then want to click a hrm for the key.
+// &sl { // Allow sticky mods to chord across sticky layers.
+//   ignore-modifiers;
+// };
 
 &lt {
   flavor = "balanced";
@@ -87,20 +88,21 @@
 #define MOUSE 7
 #define MOUSE_BTNS 8
 #define MIRROR 9
-#define ONESHOT 10
-#define SNAKE 11
-#define NOIDLE 12 
-#define SENTENCE 13 
+#define NUM_MIRROR 10
+#define ONESHOT 11
+#define SNAKE 12
+#define NOIDLE 13 
+#define SENTENCE 14 
 
 
 #define ALL_LAYERS \
-  DEF QWERTY SHFTMIRROR NUM FN NAV SYS MOUSE MOUSE_BTNS MIRROR ONESHOT SNAKE NOIDLE SENTENCE
+  DEF QWERTY SHFTMIRROR NUM FN NAV SYS MOUSE MOUSE_BTNS MIRROR ONESHOT NUM_MIRROR SNAKE NOIDLE SENTENCE
 
-#define NOT_NAV \
-  DEF QWERTY SHFTMIRROR NUM FN SYS MOUSE MOUSE_BTNS MIRROR ONESHOT SNAKE NOIDLE SENTENCE
+#define NOT_MIRROR \
+  DEF QWERTY SHFTMIRROR NUM FN NAV SYS MOUSE MOUSE_BTNS ONESHOT SNAKE NOIDLE SENTENCE
 
-#define NOT_NAV_FN_MOUSE \
-  DEF QWERTY SHFTMIRROR NUM SYS MIRROR ONESHOT SNAKE NOIDLE SENTENCE
+#define NOT_MIRR_FN_MBTNS \ 
+  DEF QWERTY SHFTMIRROR NUM NAV SYS MOUSE ONESHOT SNAKE NOIDLE SENTENCE
 
 #define LAYER_LIST \
   LL(DEF,        0,  F20)  \
@@ -112,7 +114,7 @@
   LL(SYS,        6,  F16)  \
   LL(MOUSE,      7,  F17)  \
   LL(MOUSE_BTNS, 8,  F18)  \
-  LL(ONESHOT,    10, F19)
+  LL(ONESHOT,    11, F19)
 
 // fkey: temp toggle (eg. numword, capsword, etc.)
 // shift fkey: tog on
@@ -526,6 +528,7 @@ SIMPLE_MORPH(under_snakeword, SFT, &kp UNDER, &snake_word SNAKE)
 /* Keymap */
 
 // ZMK_CONDITIONAL_LAYER(sys, NAV FN, SYS)
+ZMK_CONDITIONAL_LAYER(num_mirror, NUM MIRROR, NUM_MIRROR)
 
 / {
     conditional_layers {
@@ -654,7 +657,7 @@ ZMK_BASE_LAYER(Mouse,
 
 ZMK_BASE_LAYER(Mouse_Btns,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ 
-    ___            ___           ___           ___           ___           ___        ,   ___           U_WH_D        U_WH_U        ___           ___           ___         ,
+    ___            ___           ___           ___           ___           ___        ,   ___           U_WH_U        U_WH_D        ___           ___           ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
     ___            ___           ___           ___           ___           ___        ,   U_WH_L        &mkp LCLK     &mkp RCLK     U_WH_R        ___           ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
@@ -678,6 +681,18 @@ ZMK_BASE_LAYER(Mirror,
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
 )
 
+
+ZMK_BASE_LAYER(Num_Mirror,
+//╭─────────────┬────────────────────┬──────────────────┬─────────────────┬──────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬────────────┬─────────────────┬─────────────╮ 
+    ___           ___                  &kp N7             &kp N8            &kp N9         &kp N0      ,   &kp N6        &kp N7        &kp N8        &kp N9      &lt MOUSE_BTNS N0  ___         ,
+//├─────────────┼────────────────────┼──────────────────┼─────────────────┼──────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼────────────┼─────────────────┼─────────────┤ 
+    ___           &hml LALT N0         &hml LSHFT N4      &hml LCTRL N5     &hml LGUI N6   ___         ,   &kp COLON    &hmr RGUI N7  &hmr RCTRL N8 &hmr RSHFT N9 &hmr RALT N0      ___         ,
+//├─────────────┼────────────────────┼──────────────────┼─────────────────┼──────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼────────────┼─────────────────┼─────────────┤ 
+    ___           ___                  &kp N1             &kp N2            &kp N3         &kp PERIOD  ,   ___           &kp N1        &kp N2        &kp N3       ___               ___         ,
+//╰─────────────┼────────────────────┼──────────────────┴─────────────────┼──────────────┼─────────────┤ ├─────────────┼─────────────┴──────────────────────────┼─────────────────┼─────────────╯ 
+                                                         &tog_off_NUM       ___            ___         ,   ___           ___          &tog_off_NUM        
+//                                                      ╰─────────────────┴──────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯ 
+)                
 
 
 
