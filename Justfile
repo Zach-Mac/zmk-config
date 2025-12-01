@@ -104,7 +104,7 @@ draw:
     yq -Yi 'del(.layers.Oneshot)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Snake)' "{{ draw }}/base.yaml"
     # yq -Yi 'del(.layers.Mirror)' "{{ draw }}/base.yaml"
-    yq -Yi 'del(.layers.ShftMirror)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.LeftShift)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.NoIdle)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Sentence)' "{{ draw }}/base.yaml"
 
