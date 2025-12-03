@@ -522,24 +522,30 @@ background-color: #fff;</style>
 <text x="700" y="119" class="combo tap">|</text>
 </g>
 <g class="combo combopos-41">
+<path d="M308,102 l-205,3" class="combo"/>
+<path d="M308,102 l205,-3" class="combo"/>
+<rect rx="6" ry="6" x="294" y="88" width="28" height="26" class="combo"/>
+<text x="308" y="102" class="combo tap">&amp;kp_ha</text>
+</g>
+<g class="combo combopos-42">
 <path d="M420,62 h-162 a6.0,6.0 0 0 0 -6.0,6.0 v4" class="combo"/>
 <path d="M420,62 h162 a6.0,6.0 0 0 1 6.0,6.0 v4" class="combo"/>
 <rect rx="6" ry="6" x="406" y="49" width="28" height="26" class="combo"/>
 <text x="420" y="62" class="combo tap">Gui</text>
 </g>
-<g class="combo combopos-42">
+<g class="combo combopos-43">
 <path d="M420,83 h-218 a6.0,6.0 0 0 0 -6.0,6.0 v-24" class="combo"/>
 <path d="M420,83 h218 a6.0,6.0 0 0 1 6.0,6.0 v-24" class="combo"/>
 <rect rx="6" ry="6" x="406" y="70" width="28" height="26" class="combo"/>
 <text x="420" y="83" class="combo tap">Ctrl</text>
 </g>
-<g class="combo combopos-43">
+<g class="combo combopos-44">
 <path d="M420,109 h-274 a6.0,6.0 0 0 1 -6.0,-6.0 v7" class="combo"/>
 <path d="M420,109 h274 a6.0,6.0 0 0 0 6.0,-6.0 v7" class="combo"/>
 <rect rx="6" ry="6" x="406" y="96" width="28" height="26" class="combo"/>
 <text x="420" y="109" class="combo tap">Shift</text>
 </g>
-<g class="combo combopos-44">
+<g class="combo combopos-45">
 <path d="M420,134 h-330 a6.0,6.0 0 0 1 -6.0,-6.0 v-4" class="combo"/>
 <path d="M420,134 h330 a6.0,6.0 0 0 0 6.0,-6.0 v-4" class="combo"/>
 <rect rx="6" ry="6" x="406" y="121" width="28" height="26" class="combo"/>

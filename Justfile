@@ -38,10 +38,9 @@ build expr *west_args:
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
     echo "$targets" | while IFS=, read -r board shield snippet artifact; do
+        echo "targets $targets"
         just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
     done
-
-    just draw
 
 # clear build cache and artifacts
 clean:
@@ -54,6 +53,10 @@ clean-all: clean
 # clear nix cache
 clean-nix:
     nix-collect-garbage --delete-old
+
+corne:
+    @just build corne_left
+    @just draw
 
 # parse & plot keymap
 draw:

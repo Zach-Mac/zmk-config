@@ -87,6 +87,13 @@ ZMK_COMBO_MIRRORED(pipe,     &kp PIPE,              RM3 RB3,         LM3 LB3,   
 
 
 
+// Typos fix combos
+// ah to ha
+ZMK_MACRO(kp_ha, bindings = <&macro_tap &kp H &kp A>; tap-ms = <0>;)
+ZMK_COMBO(typo_ah_ha, &kp_ha, LM4 RM0, ALL_LAYERS, T_STRICT)
+
+
+
 // Both hands same mod - pressing left+right simultaneously produces a single sticky key
 ZMK_COMBO(kp_gui,   &kp LGUI,  LM1 RM1, ALL_LAYERS, T_MED, I_PAUSE)
 ZMK_COMBO(kp_ctrl,  &kp LCTRL, LM2 RM2, ALL_LAYERS, T_MED, I_PAUSE)
