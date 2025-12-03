@@ -15,7 +15,8 @@
 
 &msc {
   acceleration-exponent = <0>;          // 0
-  time-to-max-speed-ms = <300>;         // 300
+  /* time-to-max-speed-ms = <300>;         // 300 */
+  time-to-max-speed-ms = <0>;         // 300
   delay-ms = <0>;                       // 0
 };
 
@@ -43,11 +44,11 @@
 &msc_input_listener {
   warp {
     layers = <FN>;
-    input-processors = <&zip_scroll_scaler 2 1>;
+    input-processors = <&zip_scroll_scaler 3 1>;
   };
   precision {
-    layers = <NAV>;
-    input-processors = <&zip_scroll_scaler 1 2>;
+    layers = <NUM>;
+    input-processors = <&zip_scroll_scaler 1 3>;
   };
 };
 
