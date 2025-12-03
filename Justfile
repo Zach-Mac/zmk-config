@@ -99,6 +99,9 @@ draw:
     # this allows Mirror combos to be separate
     yq -Yi '.combos[].l |= (if contains(["Base"]) then ["Base"] else . end)' "{{ draw }}/base.yaml"
 
+    # If any combos are mapped to Oneshot layer, delete them
+    yq -Yi 'del(.combos[] | select(.l | contains(["Oneshot"])))' "{{ draw }}/base.yaml"
+
     # NOTE: if a combo exists in a layer that is deleted below, it will throw an error
     yq -Yi 'del(.layers.Qwerty)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Oneshot)' "{{ draw }}/base.yaml"

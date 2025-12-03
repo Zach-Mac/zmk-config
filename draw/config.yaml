@@ -112,6 +112,11 @@ parse_config:
     combo_lcsa_m: { hidden: true }
     combo_rcsa_m: { hidden: true }
 
+    combo_kp_gui: { align: top, o: 0 }
+    combo_kp_ctrl: { align: top, o: -0.5 }
+    combo_kp_shift: { align: bottom, o: -0.2 }
+    combo_kp_alt: { align: bottom, o: 0 }
+
     # combo_lt: { hidden: true }
     # combo_gt: { hidden: true }
     # combo_lbrc: { hidden: true }
@@ -130,6 +135,8 @@ parse_config:
     RGUI: Gui
     LSHFT: Shift
     RSHFT: Shift
+    LSHIFT: Shift
+    RSHIFT: Shift
 
     BSPC: Bspc
     DEL: Del

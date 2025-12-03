@@ -11,74 +11,129 @@
 #include "mouse.dtsi"
 
 #define COMBO_TERM_FAST 18
+#define COMBO_TERM_MED  25
 #define COMBO_TERM_SLOW 30
 #define COMBO_IDLE_FAST 150
 #define COMBO_IDLE_SLOW 50
 
-#define T_FAST COMBO_TERM_FAST
-#define T_SLOW COMBO_TERM_SLOW
-#define I_FAST COMBO_IDLE_FAST
-#define I_SLOW COMBO_IDLE_SLOW
+#define T_STRICT  COMBO_TERM_FAST
+#define T_MED     COMBO_TERM_MED
+#define T_LAX     COMBO_TERM_SLOW
+#define I_PAUSE   COMBO_IDLE_FAST
+#define I_NOPAUSE COMBO_IDLE_SLOW
 
-#define ZMK_COMBO_MIRRORED(NAME, BEHAVIOR, POS_A, POS_B, TERM, IDLE) \
-    ZMK_COMBO(NAME,     BEHAVIOR, POS_A, NOT_MIRROR, TERM, IDLE) \
-    ZMK_COMBO(NAME##_m, BEHAVIOR, POS_B, MIRROR,        TERM, IDLE)
+#define ZMK_COMBO_MIRRORED(NAME,     BEHAVIOR, POS_A, POS_B,      TERM, IDLE) \
+                 ZMK_COMBO(NAME,     BEHAVIOR, POS_A, NOT_MIRROR, TERM, IDLE) \
+                 ZMK_COMBO(NAME##_m, BEHAVIOR, POS_B, MIRROR,     TERM, IDLE)
 
 /* Horizontal combos - left hand */
-ZMK_COMBO_MIRRORED(ldel,     &kp DEL,               LT4 LT3,         RT4 RT3,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(esc,      &kp ESC,               LT3 LT2,         RT3 RT2,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(mouse,    &smart_mouse,          LT2 LT1,         RT2 RT1,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(redo,     &kp LC(Y),             LT1 LT0,         RT1 RT0,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(lwcsa,    &kp LC(LS(LA(LGUI))),  LM4 LM3 LM2 LM1, RM4 RM3 RM2 RM1,   T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(lcsa,     &kp LC(LS(LALT)),      LM4 LM3 LM2,     RM4 RM3 RM2,       T_FAST, I_FAST)
+ZMK_COMBO_MIRRORED(ldel,     &kp DEL,               LT4 LT3,         RT4 RT3,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(esc,      &kp ESC,               LT3 LT2,         RT3 RT2,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(mouse,    &smart_mouse,          LT2 LT1,         RT2 RT1,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(redo,     &kp LC(Y),             LT1 LT0,         RT1 RT0,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(lwcsa,    &kp LC(LS(LA(LGUI))),  LM4 LM3 LM2 LM1, RM4 RM3 RM2 RM1,   T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(lcsa,     &kp LC(LS(LALT)),      LM4 LM3 LM2,     RM4 RM3 RM2,       T_STRICT, I_PAUSE)
 
-ZMK_COMBO(ldrsh,             &leader_sft,           LM3 LM2 LM1,     NOT_MIRROR,        T_FAST, I_FAST, LS(LC(LGUI)), KEYS_R)
+ZMK_COMBO(ldrsh,             &leader_sft,           LM3 LM2 LM1,     NOT_MIRROR,        T_STRICT, I_PAUSE, LS(LC(LGUI)), KEYS_R)
 
-ZMK_COMBO_MIRRORED(tab,      &hml LS(LCTRL) TAB,    LM3 LM2,         RM3 RM2,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(ret,      &hml LC(LGUI) RET,     LM2 LM1,         RM2 RM1,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(selall,   &hml LS(LALT) LC(A),   LM4 LM3,         RM4 RM3,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(cut,      &kp LC(X),             LB3 LB1,         RB3 RB1,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(copy,     &kp LC(C),             LB3 LB2,         RB3 RB2,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(paste,    &kp LC(V),             LB2 LB1,         RB2 RB1,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(p,        &kp P,                 LB1 LB0,         RB1 RB0,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(undo,     &kp LC(Z),             LB4 LB3,         RB4 RB3,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(lc_ls_z,  &kp LC(LS(Z)),         LB4 LB3 LB2,     RB4 RB3 RB2,       T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(lc_ls_c,  &kp LC(LS(C)),         LB3 LB2 LB1,     RB3 RB2 RB1,       T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(lc_ls_v,  &kp LC(LS(V)),         LB2 LB1 LB0,     RB2 RB1 RB0,       T_FAST, I_FAST)
+ZMK_COMBO_MIRRORED(tab,      &hml LS(LCTRL) TAB,    LM3 LM2,         RM3 RM2,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(ret,      &hml LC(LGUI) RET,     LM2 LM1,         RM2 RM1,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(selall,   &hml LS(LALT) LC(A),   LM4 LM3,         RM4 RM3,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(cut,      &kp LC(X),             LB3 LB1,         RB3 RB1,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(copy,     &kp LC(C),             LB3 LB2,         RB3 RB2,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(paste,    &kp LC(V),             LB2 LB1,         RB2 RB1,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(p,        &kp P,                 LB1 LB0,         RB1 RB0,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(undo,     &kp LC(Z),             LB4 LB3,         RB4 RB3,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(lc_ls_z,  &kp LC(LS(Z)),         LB4 LB3 LB2,     RB4 RB3 RB2,       T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(lc_ls_c,  &kp LC(LS(C)),         LB3 LB2 LB1,     RB3 RB2 RB1,       T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(lc_ls_v,  &kp LC(LS(V)),         LB2 LB1 LB0,     RB2 RB1 RB0,       T_STRICT, I_PAUSE)
 
 /* Horizontal combos - right hand */
-ZMK_COMBO_MIRRORED(dub_dash, &double_dash,          RT1 RT2 RT3,     LT1 LT2 LT3,       T_FAST, I_SLOW)
-ZMK_COMBO_MIRRORED(topminus, &kp MINUS,             RT1 RT2,         LT1 LT2,           T_FAST, I_SLOW)
-ZMK_COMBO_MIRRORED(plus,     &kp PLUS,              RT2 RT3,         LT2 LT3,           T_FAST, I_SLOW)
-ZMK_COMBO_MIRRORED(rwcsa,    &kp RC(RS(RA(RGUI))),  RM4 RM3 RM2 RM1, LM4 LM3 LM2 LM1,   T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(rcsa,     &kp RC(RS(RALT)),      RM4 RM3 RM2,     LM4 LM3 LM2,       T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(rret,     &hmr RS(RC(RGUI)) RET, RM3 RM2 RM1,     LM3 LM2 LM1,       T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(lpar,     &lpar_lt,              RB1 RB2,         LB2 LB3,           T_FAST, I_FAST)
-ZMK_COMBO_MIRRORED(rpar,     &rpar_gt,              RB2 RB3,         LB1 LB2,           T_FAST, I_FAST)
+ZMK_COMBO_MIRRORED(dub_dash, &double_dash,          RT1 RT2 RT3,     LT1 LT2 LT3,       T_STRICT, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(topminus, &kp MINUS,             RT1 RT2,         LT1 LT2,           T_STRICT, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(plus,     &kp PLUS,              RT2 RT3,         LT2 LT3,           T_STRICT, I_NOPAUSE)
+/* ZMK_COMBO_MIRRORED(rwcsa,    &kp RC(RS(RA(RGUI))),  RM4 RM3 RM2 RM1, LM4 LM3 LM2 LM1,   T_STRICT, I_PAUSE) */
+/* ZMK_COMBO_MIRRORED(rcsa,     &kp RC(RS(RALT)),      RM4 RM3 RM2,     LM4 LM3 LM2,       T_STRICT, I_PAUSE) */
+ZMK_COMBO_MIRRORED(rret,     &hmr RS(RC(RGUI)) RET, RM3 RM2 RM1,     LM3 LM2 LM1,       T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(lpar,     &lpar_lt,              RB1 RB2,         LB2 LB3,           T_STRICT, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(rpar,     &rpar_gt,              RB2 RB3,         LB1 LB2,           T_STRICT, I_NOPAUSE)
 
-ZMK_COMBO(lbkt,              &hmr RC(RGUI) LBKT,    RM1 RM2,         NOT_MIRR_FN_MBTNS, T_FAST, I_FAST)
-ZMK_COMBO(lbkt_m,            &hmr RC(RGUI) LBKT,    LM2 LM3,         MIRROR,            T_FAST, I_FAST)
-ZMK_COMBO(rbkt,              &hmr RS(RCTRL) RBKT,   RM2 RM3,         NOT_MIRR_FN_MBTNS, T_FAST, I_FAST)
-ZMK_COMBO(rbkt_m,            &hmr RS(RCTRL) RBKT,   LM1 LM2,         MIRROR,            T_FAST, I_FAST)
+ZMK_COMBO(lbkt,              &hmr RC(RGUI) LBKT,    RM1 RM2,         NOT_MIRR_FN_MBTNS, T_STRICT, I_NOPAUSE)
+ZMK_COMBO(lbkt_m,            &hmr RC(RGUI) LBKT,    LM2 LM3,         MIRROR,            T_STRICT, I_NOPAUSE)
+ZMK_COMBO(rbkt,              &hmr RS(RCTRL) RBKT,   RM2 RM3,         NOT_MIRR_FN_MBTNS, T_STRICT, I_NOPAUSE)
+ZMK_COMBO(rbkt_m,            &hmr RS(RCTRL) RBKT,   LM1 LM2,         MIRROR,            T_STRICT, I_NOPAUSE)
 
-ZMK_COMBO(lbrc,              &mkp MCLK,             RM1 RM2,         FN MOUSE_BTNS,     T_FAST, I_FAST)
+ZMK_COMBO(lbrc,              &mkp MCLK,             RM1 RM2,         FN MOUSE_BTNS,     T_STRICT, I_PAUSE)
 
 
 /* Vertical combos - left hand */
-ZMK_COMBO_MIRRORED(at,       &kp AT,                LT3 LM3,         RT3 RM3,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(hash,     &kp HASH,              LT2 LM2,         RT2 RM2,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(dllr,     &kp DLLR,              LT1 LM1,         RT1 RM1,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(prcnt,    &kp PRCNT,             LT0 LM0,         RT0 RM0,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(grave,    &kp GRAVE,             LM3 LB3,         RM3 RB3,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(bslh,     &kp BSLH,              LM2 LB2,         RM2 RB2,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(tilde,    &kp TILDE,             LM1 LB1,         RM1 RB1,           T_SLOW, I_SLOW)
+ZMK_COMBO_MIRRORED(at,       &kp AT,                LT3 LM3,         RT3 RM3,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(hash,     &kp HASH,              LT2 LM2,         RT2 RM2,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(dllr,     &kp DLLR,              LT1 LM1,         RT1 RM1,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(prcnt,    &kp PRCNT,             LT0 LM0,         RT0 RM0,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(grave,    &kp GRAVE,             LM3 LB3,         RM3 RB3,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(bslh,     &kp BSLH,              LM2 LB2,         RM2 RB2,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(tilde,    &kp TILDE,             LM1 LB1,         RM1 RB1,           T_LAX, I_NOPAUSE)
 
 /* Vertical combos - right hand */
-ZMK_COMBO_MIRRORED(caret,    &kp CARET,             RT0 RM0,         LT0 LM0,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(under,    &kp UNDER,             RT1 RM1,         LT1 LM1,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(star,     &kp STAR,              RT2 RM2,         LT2 LM2,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(amps,     &kp AMPS,              RT3 RM3,         LT3 LM3,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(minus,    &kp MINUS,             RM0 RB0,         LM0 LB0,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(requal,   &kp EQUAL,             RM1 RB1,         LM1 LB1,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(excl,     &kp EXCL,              RM2 RB2,         LM2 LB2,           T_SLOW, I_SLOW)
-ZMK_COMBO_MIRRORED(pipe,     &kp PIPE,              RM3 RB3,         LM3 LB3,           T_SLOW, I_SLOW)
+ZMK_COMBO_MIRRORED(caret,    &kp CARET,             RT0 RM0,         LT0 LM0,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(under,    &kp UNDER,             RT1 RM1,         LT1 LM1,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(star,     &kp STAR,              RT2 RM2,         LT2 LM2,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(amps,     &kp AMPS,              RT3 RM3,         LT3 LM3,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(minus,    &kp MINUS,             RM0 RB0,         LM0 LB0,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(requal,   &kp EQUAL,             RM1 RB1,         LM1 LB1,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(excl,     &kp EXCL,              RM2 RB2,         LM2 LB2,           T_LAX, I_NOPAUSE)
+ZMK_COMBO_MIRRORED(pipe,     &kp PIPE,              RM3 RB3,         LM3 LB3,           T_LAX, I_NOPAUSE)
+
+
+
+// Both hands same mod - pressing left+right simultaneously produces a single sticky key
+ZMK_COMBO(kp_gui,   &kp LGUI,  LM1 RM1, ALL_LAYERS, T_MED, I_PAUSE)
+ZMK_COMBO(kp_ctrl,  &kp LCTRL, LM2 RM2, ALL_LAYERS, T_MED, I_PAUSE)
+ZMK_COMBO(kp_shift, &kp LSHFT, LM3 RM3, ALL_LAYERS, T_MED, I_PAUSE)
+ZMK_COMBO(kp_alt,   &kp LALT,  LM4 RM4, ALL_LAYERS, T_MED, I_PAUSE)
+
+
+
+/* ONESHOT layer modifier combos
+ *
+ * PREFERRED SOLUTION (not currently possible in ZMK):
+ * Enable time-limited ignore-modifiers (15-30ms window) where:
+ * - If another sticky mod is pressed within 30ms → stack them together
+ * - After 30ms → disable ignore-modifiers so homerow mods work normally
+ * This would allow quick rolling of oneshot mods while preserving HRM functionality.
+ *
+ * CURRENT WORKAROUND:
+ * Create combos for common modifier combinations since we can't use ignore-modifiers
+ * (it would prevent homerow mods from working correctly). These combos create sticky
+ * modifier combinations that apply to the next keypress.
+ *
+ * Key positions on ONESHOT layer:
+ * Left:  LM4=ALT, LM3=SHIFT, LM2=CTRL, LM1=GUI
+ * Right: RM1=GUI, RM2=CTRL, RM3=SHIFT, RM4=ALT
+ */
+
+// Helper macro for creating sticky mod combos on both hands
+#define SK_COMBO(NAME, LEFT_BINDING, RIGHT_BINDING, LEFT_POS, RIGHT_POS) \
+    ZMK_COMBO(sk_##NAME##_l, LEFT_BINDING, LEFT_POS, ONESHOT, T_LAX, I_NOPAUSE) \
+    ZMK_COMBO(sk_##NAME##_r, RIGHT_BINDING, RIGHT_POS, ONESHOT, T_LAX, I_NOPAUSE)
+
+// Two-modifier combinations
+SK_COMBO(ctrl_shift,  &sk LC(LSHIFT), &sk RC(RSHIFT), LM2 LM3, RM2 RM3)
+SK_COMBO(ctrl_alt,    &sk LC(LALT), &sk RC(RALT), LM2 LM4, RM2 RM4)
+SK_COMBO(ctrl_gui,    &sk LC(LGUI), &sk RC(RGUI), LM2 LM1, RM2 RM1)
+SK_COMBO(shift_alt,   &sk LS(LALT), &sk RS(RALT), LM3 LM4, RM3 RM4)
+SK_COMBO(shift_gui,   &sk LS(LGUI), &sk RS(RGUI), LM3 LM1, RM3 RM1)
+SK_COMBO(alt_gui,     &sk LA(LGUI), &sk RA(RGUI), LM4 LM1, RM4 RM1)
+
+// Three-modifier combinations
+SK_COMBO(ctrl_shift_alt, &sk LC(LS(LALT)), &sk RC(RS(RALT)), LM2 LM3 LM4, RM2 RM3 RM4)
+SK_COMBO(ctrl_shift_gui, &sk LC(LS(LGUI)), &sk RC(RS(RGUI)), LM2 LM3 LM1, RM2 RM3 RM1)
+SK_COMBO(ctrl_alt_gui,   &sk LC(LA(LGUI)), &sk RC(RA(RGUI)), LM2 LM4 LM1, RM2 RM4 RM1)
+SK_COMBO(shift_alt_gui,  &sk LS(LA(LGUI)), &sk RS(RA(RGUI)), LM3 LM4 LM1, RM3 RM4 RM1)
+
+// Four-modifier combination
+SK_COMBO(all_mods, &sk LC(LS(LA(LGUI))), &sk RC(RS(RA(RGUI))), LM2 LM3 LM4 LM1, RM2 RM3 RM4 RM1)
+
+// Clean up macro
+#undef SK_COMBO

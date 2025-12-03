@@ -1,3 +1,7 @@
+> **Note**: This configuration is forked from [urob/zmk-config](https://github.com/urob/zmk-config). The documentation below is preserved from the upstream repository.
+
+---
+
 # urob's zmk-config
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)

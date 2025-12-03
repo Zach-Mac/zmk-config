@@ -114,11 +114,13 @@
 #define ALL_LAYERS \
   DEF QWERTY LEFTSHIFT NUM FN NAV SYS MOUSE MOUSE_BTNS MIRROR ONESHOT NUM_MIRROR SNAKE NOIDLE SENTENCE
 
+// also not including ONESHOT
 #define NOT_MIRROR \
-  DEF QWERTY LEFTSHIFT NUM FN NAV SYS MOUSE MOUSE_BTNS ONESHOT SNAKE NOIDLE SENTENCE
+  DEF QWERTY LEFTSHIFT NUM FN NAV SYS MOUSE MOUSE_BTNS SNAKE NOIDLE SENTENCE
 
+// also not including ONESHOT
 #define NOT_MIRR_FN_MBTNS \ 
-  DEF QWERTY LEFTSHIFT NUM NAV SYS MOUSE ONESHOT SNAKE NOIDLE SENTENCE
+  DEF QWERTY LEFTSHIFT NUM NAV SYS MOUSE SNAKE NOIDLE SENTENCE
 
 #define LAYER_LIST \
   LL(DEF,        0,  F20)  \
@@ -243,154 +245,6 @@ ZMK_HOLD_TAP(lt_spc_noidle, bindings = <&mo>, <&spc_then_noidle>; flavor = "bala
 #define ZMK_COMBO_8(NAME, TAP, POS, LAYERS, COMBO_MS, IDLE_MS, HOLD, SIDE)     \
   MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
   ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
-
-
-// ZMK_MACRO()
-
-
-// / {
-//   behaviors {
-//     my_mirror_shift_sticky: my_mirror_shift_sticky {
-//       compatible = "zmk,behavior-macro";
-//       label = "MY_MIRROR_SHIFT_STICKY";
-//       #binding-cells = <0>;
-//       bindings = <&mo MIRROR>, <&sk LSHFT>;
-//     };
-//   };
-// };
-
-
-
-// / {
-//   behaviors {
-//     mirror_shift_sticky: mirror_shift_sticky {
-//       compatible = "zmk,behavior-macro";
-//       label = "MIRROR_SHIFT_STICKY";
-//       #binding-cells = <0>;
-//       bindings = <&mo MIRROR>, <&sk LSHFT>;
-//     };
-//
-//     mirror_ctrl_sticky: mirror_ctrl_sticky {
-//       compatible = "zmk,behavior-macro";
-//       label = "MIRROR_CTRL_STICKY";
-//       #binding-cells = <0>;
-//       bindings = <&mo MIRROR>, <&sk LCTRL>;
-//     };
-//
-//     mirror_alt_sticky: mirror_alt_sticky {
-//       compatible = "zmk,behavior-macro";
-//       label = "MIRROR_ALT_STICKY";
-//       #binding-cells = <0>;
-//       bindings = <&mo MIRROR>, <&sk LALT>;
-//     };
-//
-//     mirror_gui_sticky: mirror_gui_sticky {
-//       compatible = "zmk,behavior-macro";
-//       label = "MIRROR_GUI_STICKY";
-//       #binding-cells = <0>;
-//       bindings = <&mo MIRROR>, <&sk LGUI>;
-//     };
-//
-//     mirror_only: mirror_only {
-//       compatible = "zmk,behavior-macro";
-//       label = "MIRROR_ONLY";
-//       #binding-cells = <0>;
-//       bindings = <&mo MIRROR>;
-//     };
-//   };
-// };
-
-// / {
-//   behaviors {
-//     m_with_active_mod: m_with_active_mod {
-//       compatible = "zmk,behavior-mod-morph";
-//       label = "M_WITH_ACTIVE_MOD";
-//       // Base (no mods held):
-//       bindings = <&mirror_only>;
-//       mods = <(LSHFT) &mirror_shift_sticky
-//               (LCTRL) &mirror_ctrl_sticky
-//               (LALT)  &mirror_alt_sticky
-//               (LGUI)  &mirror_gui_sticky>;
-//       // Optional: also cover right-hand mods if you use them:
-//       // mods = <(LSHFT|RSHFT) ...> etc.
-//     };
-//   };
-// };
-
-// --- Macros: press mod + MIRROR on press, release both on M release ---
-ZMK_MACRO(mirror_hold_shift,
-  wait-ms = <0>; tap-ms = <0>;
-  bindings =
-    <&macro_press   &mo MIRROR &kp LSHFT>,
-    <&macro_pause_for_release>,
-    <&macro_release &mo MIRROR &kp LSHFT>;
-)
-
-ZMK_MACRO(mirror_hold_ctrl,
-  wait-ms = <0>; tap-ms = <0>;
-  bindings =
-    <&macro_press   &mo MIRROR &kp LCTRL>,
-    <&macro_pause_for_release>,
-    <&macro_release &mo MIRROR &kp LCTRL>;
-)
-
-ZMK_MACRO(mirror_hold_alt,
-  wait-ms = <0>; tap-ms = <0>;
-  bindings =
-    <&macro_press   &mo MIRROR &kp LALT>,
-    <&macro_pause_for_release>,
-    <&macro_release &mo MIRROR &kp LALT>;
-)
-
-ZMK_MACRO(mirror_hold_gui,
-  wait-ms = <0>; tap-ms = <0>;
-  bindings =
-    <&macro_press   &mo MIRROR &kp LGUI>,
-    <&macro_pause_for_release>,
-    <&macro_release &mo MIRROR &kp LGUI>;
-)
-
-// If no mod is held: just hold MIRROR while M is held
-ZMK_MACRO(mirror_only_hold,
-  wait-ms = <0>; tap-ms = <0>;
-  bindings =
-    <&macro_press   &mo MIRROR>,
-    <&macro_pause_for_release>,
-    <&macro_release &mo MIRROR>;
-)
-
-// --- Mod-morph chain so M reacts to whichever mod is down ---
-ZMK_MOD_MORPH(m_morph_shift2,
-  bindings = <&sl MIRROR>, <&mirror_hold_shift>;
-  mods = <(LSHFT|RSHFT)>;
-  keep-mods = <1>;
-)
-
-ZMK_MOD_MORPH(m_morph_shift,
-  bindings = <&m_morph_ctrl>, <&mirror_hold_shift>;
-  mods = <(LSHFT|RSHFT)>;
-  keep-mods = <(LSHFT|RSHFT)>;
-)
-
-ZMK_MOD_MORPH(m_morph_ctrl,
-  bindings = <&m_morph_alt>, <&mirror_hold_ctrl>;
-  mods = <(LCTRL|RCTRL)>;
-  keep-mods = <(LCTRL|RCTRL)>;
-)
-
-ZMK_MOD_MORPH(m_morph_alt,
-  bindings = <&m_morph_gui>, <&mirror_hold_alt>;
-  mods = <(LALT|RALT)>;
-  keep-mods = <(LALT|RALT)>;
-)
-
-ZMK_MOD_MORPH(m_morph_gui,
-  bindings = <&sl MIRROR>, <&mirror_hold_gui>;
-  mods = <(LGUI|RGUI)>;
-  keep-mods = <(LGUI|RGUI)>;
-)
-
-
 
 /* Combos, leader key sequences, mouse emulation */
 
@@ -599,10 +453,7 @@ ZMK_BASE_LAYER(LeftShift,
     ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ 
     ___           ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___           ___         ,
-    // ___           ___           ___           ___           ___  &my_mirror_shift_sticky ,  &mirror_hold_shift           ___           ___           ___           ___           ___         ,
-    // ___ &mirror_hold_alt  &mirror_hold_shift  &mirror_hold_ctrl &mirror_hold_gui  ___ ,   ___           ___           ___           ___           ___           ___         ,
 //╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────╯
-                                           // ___           ___         &m_morph_shift,   ___           ___         &m_morph_shift
                                               ___           ___           MAGIC_SHIFT ,   ___           ___          SMART_NUM
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
 )
@@ -737,7 +588,6 @@ ZMK_BASE_LAYER(NoIdle,
     ___            ___           ___           ___           ___           ___        ,   ___           ___           ___           ___           ___           ___         ,
 //╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────┼─────────────╯ 
                                                ___           ___           ___        ,   ___           ___           ___ 
-                                           // &kp Z  &lt_spc_noidle FN 0  MAGIC_SHIFT,   MAGIC_SHIFT  &lt_spc NAV 0  SMART_NUM           
 //                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
 )
 

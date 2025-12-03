@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Repository Overview
+
+This is a **personal ZMK firmware configuration**, forked from [urob/zmk-config](https://github.com/urob/zmk-config). It retains the core "timeless homerow mods" architecture and helper modules from the upstream repo, but has been customized with personal keymaps, combos, and layer configurations.
+
+**Important notes:**
+- `readme.md` is the **unchanged original from urob's repo** - serves as excellent reference documentation for understanding the design philosophy and techniques used
+- The actual configuration (keymap, combos, layers) has diverged from urob's original
+- urob's repo and documentation remain the authoritative reference for the underlying architecture
+
 ## Quick Start Commands
 
 ### Build & Development
@@ -98,7 +107,7 @@ CONFIG_BT_CTLR_TX_PWR_PLUS_8=y                  # Stronger Bluetooth
 ### Homerow Mods (Key Innovation)
 - "Timeless" implementation using balanced flavor, require-prior-idle, positional hold-tap
 - Tapping term: 280ms (tuned for combo avoidance + same-hand mod combinations)
-- See `readme.md` for detailed explanation of the technique
+- See `readme.md` (from upstream urob/zmk-config) for detailed explanation of the technique
 
 ### Keymap Visualization
 ```bash
@@ -267,7 +276,7 @@ firmware/
 ## References
 
 - **ZMK Docs**: https://zmk.dev
-- **This Repo**: https://github.com/urob/zmk-config
+- **Upstream Config** (this repo is forked from): https://github.com/urob/zmk-config
 - **Homerow Mods Guide**: https://precondition.github.io/home-row-mods
 - **Keymap Drawer**: https://github.com/caksoylar/keymap-drawer
 - **ZMK Modules**: Custom feature extensions
