@@ -12,15 +12,18 @@
   #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
 #endif
 
+<<<<<<< HEAD
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/unicode-chars/greek.dtsi"
 #include "zmk-helpers/unicode-chars/german.dtsi"
+=======
 #define DEF 0
 #define NAV 1
 #define FN 2
 #define NUM 3
 #define SYS 4
 #define MOUSE 5
+>>>>>>> upstream/main
 
 #define XXX &none
 #define ___ &trans
