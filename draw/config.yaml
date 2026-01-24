@@ -51,6 +51,8 @@ parse_config:
     "&kp LBKT": { "t": "[", "right": "{" }
     "&kp RBKT": { "t": "]", "right": "}" }
 
+    "&nudge_mouse_down": Nudge Mouse
+
     "&mmv MOVE_UP": Mouse ↑
     "&mmv MOVE_DOWN": Mouse ↓
     "&mmv MOVE_LEFT": Mouse ←
