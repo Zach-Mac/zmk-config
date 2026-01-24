@@ -52,29 +52,11 @@
   };
 };
 
-// One-shot mouse nudge (approx. 10px down per tap).
-/ {
-  behaviors {
-    nudge_mmv: nudge_mmv {
-      compatible = "zmk,behavior-input-two-axis";
-      #binding-cells = <1>;
-      x-input-code = <INPUT_REL_X>;
-      y-input-code = <INPUT_REL_Y>;
-      trigger-period-ms = <16>;
-      delay-ms = <0>;
-      time-to-max-speed-ms = <0>;
-      acceleration-exponent = <0>;
-    };
-  };
-};
-
 #define NUDGE_TAP_MS 100
 ZMK_MACRO(nudge_mouse_down,
   wait-ms = <0>;
   tap-ms = <NUDGE_TAP_MS>;
-  /* bindings = <&nudge_mmv MOVE_Y(10)>; */
   bindings = <&mmv MOVE_DOWN>;
-  /* bindings = <&kp DOWN>; */
 )
 
 #define U_MS_U &mmv MOVE_UP
