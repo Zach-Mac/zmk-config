@@ -117,6 +117,8 @@ parse_config:
     combo_kp_shift: { align: bottom, o: -0.2 }
     combo_kp_alt: { align: bottom, o: 0 }
 
+    combo_typo_ah_ha: { hidden: true }
+
     # combo_lt: { hidden: true }
     # combo_gt: { hidden: true }
     # combo_lbrc: { hidden: true }

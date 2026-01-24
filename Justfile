@@ -75,7 +75,7 @@ draw:
     # this allows Mirror combos to be separate
     yq -Yi '.combos[].l |= (if contains(["Base"]) then ["Base"] else . end)' "{{ draw }}/base.yaml"
 
-    # If any combos are mapped to Oneshot layer, delete them
+    # Delete combos that are mapped to Oneshot layer
     yq -Yi 'del(.combos[] | select(.l | contains(["Oneshot"])))' "{{ draw }}/base.yaml"
 
     # NOTE: if a combo exists in a layer that is deleted below, it will throw an error
@@ -93,6 +93,8 @@ draw:
     # keymap -d -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap.original" --virtual-layers Combos >"{{ draw }}/base.yaml"
     # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
     # keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "ferris/sweep" >"{{ draw }}/base.svg"
+
+    cp "{{ draw }}/base.svg" ~/dotfiles/.config/keyboard/keyboard-layout.svg
 
 # initialize west
 init:

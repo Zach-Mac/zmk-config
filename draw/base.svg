@@ -521,12 +521,6 @@ background-color: #fff;</style>
 <rect rx="6" ry="6" x="686" y="106" width="28" height="26" class="combo"/>
 <text x="700" y="119" class="combo tap">|</text>
 </g>
-<g class="combo combopos-41">
-<path d="M308,102 l-205,3" class="combo"/>
-<path d="M308,102 l205,-3" class="combo"/>
-<rect rx="6" ry="6" x="294" y="88" width="28" height="26" class="combo"/>
-<text x="308" y="102" class="combo tap">&amp;kp_ha</text>
-</g>
 <g class="combo combopos-42">
 <path d="M420,62 h-162 a6.0,6.0 0 0 0 -6.0,6.0 v4" class="combo"/>
 <path d="M420,62 h162 a6.0,6.0 0 0 1 6.0,6.0 v4" class="combo"/>
