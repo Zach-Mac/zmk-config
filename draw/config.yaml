@@ -34,9 +34,8 @@ parse_config:
     "&smart_mouse": Smart Mouse
 
     "&double_dash": --
-# ZMK_COMBO_MIRRORED(lc_ls_z,  &kp LC(LS(Z)),         LB4 LB3 LB2,     RB4 RB3 RB2,       T_FAST, I_FAST)
-# ZMK_COMBO_MIRRORED(lc_ls_c,  &kp LC(LS(C)),         LB3 LB2 LB1,     RB3 RB2 RB1,       T_FAST, I_FAST)
-# ZMK_COMBO_MIRRORED(lc_ls_v,  &kp LC(LS(V)),         LB2 LB1 LB0,     RB2 RB1 RB0,       T_FAST, I_FAST)
+    "&dd_help": --help
+
     "&kp LC(LS(Z))": C-S Z
     "&kp LC(LS(C))": C-S C
     "&kp LC(LS(V))": C-S V

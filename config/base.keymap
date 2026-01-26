@@ -393,6 +393,9 @@ SIMPLE_MORPH(under_snakeword, SFT, &kp UNDER, &snake_word SNAKE)
 // Double dash
 ZMK_MACRO(double_dash, bindings = <&kp MINUS &kp MINUS>;)
 
+// Double dash help
+ZMK_MACRO(dd_help, bindings = <&kp MINUS &kp MINUS &kp H &kp E &kp L &kp P>; wait-ms = <0>; tap-ms = <5>;)
+
 // Misc aliases. [TODO: clean up]
 #define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
 #define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
