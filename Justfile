@@ -55,7 +55,7 @@ clean-nix:
     nix-collect-garbage --delete-old
 
 corne:
-    @just build corne_left
+    @just build corne
     @just draw
 
 # parse & plot keymap
