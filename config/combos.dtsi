@@ -41,7 +41,7 @@ ZMK_COMBO_MIRRORED(ret,         &hml LC(LGUI) RET,     LM2 LM1,         RM2 RM1,
 ZMK_COMBO_MIRRORED(selall,      &hml LS(LALT) LC(A),   LM4 LM3,         RM4 RM3,           T_STRICT, I_PAUSE)
 ZMK_COMBO_MIRRORED(cut,         &kp LC(X),             LB3 LB1,         RB3 RB1,           T_STRICT, I_PAUSE)
 ZMK_COMBO_MIRRORED(copy,        &kp LC(C),             LB3 LB2,         RB3 RB2,           T_STRICT, I_PAUSE)
-ZMK_COMBO_MIRRORED(paste,       &kp LC(V),             LB2 LB1,         RB2 RB1,           T_STRICT, I_PAUSE)
+ZMK_COMBO_MIRRORED(paste,       &kp LC(V),             LB2 LB1,         RB2 RB1,           T_STRICT, I_NOPAUSE)
 ZMK_COMBO_MIRRORED(p,           &kp P,                 LB1 LB0,         RB1 RB0,           T_STRICT, I_PAUSE)
 ZMK_COMBO_MIRRORED(undo,        &kp LC(Z),             LB4 LB3,         RB4 RB3,           T_STRICT, I_PAUSE)
 ZMK_COMBO_MIRRORED(lc_ls_z,     &kp LC(LS(Z)),         LB4 LB3 LB2,     RB4 RB3 RB2,       T_STRICT, I_PAUSE)
