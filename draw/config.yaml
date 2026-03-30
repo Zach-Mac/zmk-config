@@ -119,6 +119,8 @@ parse_config:
     combo_kp_alt: { align: bottom, o: 0 }
 
     combo_typo_ah_ha: { hidden: true }
+    combo_typo_colon: { hidden: true }
+    combo_typo_qmark: { hidden: true }
 
     # combo_lt: { hidden: true }
     # combo_gt: { hidden: true }
