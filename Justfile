@@ -86,6 +86,10 @@ draw:
     yq -Yi 'del(.layers.LeftShift)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.NoIdle)' "{{ draw }}/base.yaml"
     yq -Yi 'del(.layers.Sentence)' "{{ draw }}/base.yaml"
+    # yq -Yi 'del(.layers.Game)' "{{ draw }}/base.yaml"
+    # yq -Yi 'del(.layers.Game_Num_Bottom)' "{{ draw }}/base.yaml"
+    # yq -Yi 'del(.layers.Game_Hotbar)' "{{ draw }}/base.yaml"
+    yq -Yi 'del(.layers.Game_Num_Bottom_Mode)' "{{ draw }}/base.yaml"
 
     # yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
     keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "corne_rotated" >"{{ draw }}/base.svg"
